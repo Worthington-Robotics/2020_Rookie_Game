@@ -2,9 +2,10 @@ package frc.robot.subsystems;
 
 
 public class Drive extends Subsystem {
+    private TalonSRX
     Drive mDrive = new Drive();
 
-    public Drive GetInstance()
+    public Drive getInstance()
     {
         return mDrive;
     } 

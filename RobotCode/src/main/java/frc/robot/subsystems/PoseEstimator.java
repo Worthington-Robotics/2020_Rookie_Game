@@ -1,4 +1,4 @@
-package frc.robot.subsystems;
+/**package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -121,7 +121,7 @@ public class PoseEstimator extends Subsystem {
     {
         return periodic.odometry.getRotation().getDegrees();
     }
-*/
+*//**
     @Override
     public void registerEnabledLoops(ILooper looper) {
         looper.register(mLoop);
@@ -130,5 +130,6 @@ public class PoseEstimator extends Subsystem {
     public static class PeriodicIO
     {
         Pose2d odometry;
-    }*/
+    }*//**
 }
+*/
