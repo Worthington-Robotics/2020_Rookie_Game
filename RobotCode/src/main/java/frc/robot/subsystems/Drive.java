@@ -4,6 +4,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import frc.lib.loops.Loop;
 import frc.lib.util.DriveSignal;
 
 public class Drive extends Subsystem {
@@ -12,6 +13,35 @@ public class Drive extends Subsystem {
     private VictorSPX a, b, c, d;
     private DriveControlState mDriveControlState;
     private PeriodicIO periodic = new PeriodicIO();
+    private final Loop mLoop = new Loop(){
+        /**
+         * what the loop runs when started by the subsystem manager
+         *
+         * @param timestamp handled by subsystem manager
+         */
+        public void onStart(double timestamp) {
+
+        }
+
+        /**
+         * what the loop runs while run by the subsystem manager
+         *
+         * @param timestamp handled by subsystem manager
+         */
+        public void onLoop(double timestamp) {
+
+        }
+
+        /**
+         * what the loop runs when ended by the subsystem manager
+         *
+         * @param timestamp handled by subsystem manager
+         */
+        public void onStop(double timestamp) {
+
+        }
+    };
+}
     public Drive() {
         x = new TalonSRX(1);
         y = new TalonSRX(2);
@@ -61,4 +91,3 @@ public class Drive extends Subsystem {
         public double left_demand = 0;
         public double right_demand = 0;
     }
-}
