@@ -19,7 +19,8 @@
   <component name="ProjectId" id="1TX5ZFK20RVq5cPy8WfUQzQn0Xz" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../2019RobotCode/Robot_Code/build.gradle" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/build.gradle" />
+    <property name="show.unlinked.gradle.project.popup" value="true" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -51,7 +52,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
