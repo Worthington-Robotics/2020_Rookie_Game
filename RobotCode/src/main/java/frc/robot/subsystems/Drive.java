@@ -4,8 +4,13 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.lib.loops.Loop;
 import frc.lib.util.DriveSignal;
+import frc.lib.util.HIDHelper;
+import frc.robot.Constants;
+
+import javax.swing.*;
 
 public class Drive extends Subsystem {
 
@@ -13,14 +18,16 @@ public class Drive extends Subsystem {
     private VictorSPX a, b, c, d;
     private DriveControlState mDriveControlState;
     private PeriodicIO periodic = new PeriodicIO();
-    private final Loop mLoop = new Loop(){
+    private double[] operatorInput = {0, 0, 0};
+    private final Loop mLoop = new Loop() {
         /**
          * what the loop runs when started by the subsystem manager
          *
          * @param timestamp handled by subsystem manager
          */
         public void onStart(double timestamp) {
-
+            synchronized (Drive.this) {
+            }
         }
 
         /**
@@ -29,7 +36,9 @@ public class Drive extends Subsystem {
          * @param timestamp handled by subsystem manager
          */
         public void onLoop(double timestamp) {
-
+            operatorInput = HIDHelper.getAdjStick(Constants.MASTER_STICK);
+            SmartDashboard.putNumberArray("stick", operatorInput);
+            setOpenLoop(arcadeDrive(operatorInput[1], operatorInput[2]));
         }
 
         /**
@@ -41,7 +50,7 @@ public class Drive extends Subsystem {
 
         }
     };
-}
+
     public Drive() {
         x = new TalonSRX(1);
         y = new TalonSRX(2);
@@ -78,6 +87,26 @@ public class Drive extends Subsystem {
 
     }
 
+    private DriveSignal arcadeDrive(double x, double y) {
+        double left;
+        double right;
+        double maxInput = Math.copySign(Math.max(Math.abs(x), Math.abs(y)), x);
+        if (x >= 0 && y >= 0) {
+            left = maxInput;
+            right = x - y;
+        } else if (x < 0 && y >= 0) {
+            left = x + y;
+            right = y;
+        } else if (x < 0 && y < 0) {
+            left = x + y;
+            right = maxInput;
+        } else {
+            left = maxInput;
+            right = x - y;
+        }
+        return new DriveSignal(left, right);
+    }
+
     enum DriveControlState {
         OPEN_LOOP;
 
@@ -91,3 +120,4 @@ public class Drive extends Subsystem {
         public double left_demand = 0;
         public double right_demand = 0;
     }
+}
