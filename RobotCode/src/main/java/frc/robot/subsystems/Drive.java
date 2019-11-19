@@ -5,6 +5,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.lib.loops.ILooper;
 import frc.lib.loops.Loop;
 import frc.lib.util.DriveSignal;
 import frc.lib.util.HIDHelper;
@@ -19,6 +20,7 @@ public class Drive extends Subsystem {
     private DriveControlState mDriveControlState;
     private PeriodicIO periodic = new PeriodicIO();
     private double[] operatorInput = {0, 0, 0};
+    private static Drive mDrive = new Drive();
     private final Loop mLoop = new Loop() {
         /**
          * what the loop runs when started by the subsystem manager
@@ -60,6 +62,10 @@ public class Drive extends Subsystem {
         d = new VictorSPX(6);
     }
 
+    public void registerEnabledLoops(ILooper enabledLooper) {
+        enabledLooper.register(mLoop);
+    }
+
     public synchronized void setOpenLoop(DriveSignal signal) {
         if (mDriveControlState != DriveControlState.OPEN_LOOP) {
             System.out.println("Switching to open loop");
@@ -71,9 +77,17 @@ public class Drive extends Subsystem {
         periodic.right_demand = signal.getRight();
     }
 
-    private Drive mDrive = new Drive();
+    public synchronized void writePeriodicOutputs() {
+        x.set(ControlMode.PercentOutput, periodic.left_demand);
+        y.set(ControlMode.PercentOutput, periodic.right_demand);
+        a.set(ControlMode.PercentOutput, x.getDeviceID());
+        b.set(ControlMode.PercentOutput, x.getDeviceID());
+        c.set(ControlMode.PercentOutput, y.getDeviceID());
+        d.set(ControlMode.PercentOutput, y.getDeviceID());
+    }
 
-    public Drive getInstance() {
+
+    public static Drive getInstance() {
         return mDrive;
     }
 
