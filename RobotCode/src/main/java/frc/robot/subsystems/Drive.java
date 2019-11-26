@@ -1,6 +1,5 @@
 package frc.robot.subsystems;
 
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
@@ -11,7 +10,6 @@ import frc.lib.util.DriveSignal;
 import frc.lib.util.HIDHelper;
 import frc.robot.Constants;
 
-import javax.swing.*;
 
 public class Drive extends Subsystem {
 
@@ -28,7 +26,7 @@ public class Drive extends Subsystem {
          * @param timestamp handled by subsystem manager
          */
         public void onStart(double timestamp) {
-            synchronized (Drive.this) {
+            synchronized (Drive.this) { 
             }
         }
 
