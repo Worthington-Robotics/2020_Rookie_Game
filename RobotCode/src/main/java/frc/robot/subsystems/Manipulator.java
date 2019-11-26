@@ -8,6 +8,7 @@ public class Manipulator extends Subsystem {
 
     private Spark manipulator;
     private PeriodicIO periodic1;
+
     public Manipulator() {
         manipulator = new Spark(Constants.MANIPULATOR_ID_1);
         periodic1 = new PeriodicIO();
@@ -23,10 +24,14 @@ public class Manipulator extends Subsystem {
 
 
     public void writePeriodicOutputs() {
-    manipulator.set(periodic1.demand);
+        manipulator.set(periodic1.manipulator_demand);
     }
-    public void setDemand(double dEMAND){
-        periodic1.demand = dEMAND;
+
+    public void setDemand(double demand1) {
+        periodic1.manipulator_demand = demand1;
+    }
+    public static Manipulator getInstance(){
+        return new Manipulator();
     }
     /**
      * Called to reset and configure the subsystem
@@ -41,6 +46,6 @@ public class Manipulator extends Subsystem {
     }
 
     public static class PeriodicIO {
-        public double demand = 0;
+        public double manipulator_demand = 0;
     }
 }
