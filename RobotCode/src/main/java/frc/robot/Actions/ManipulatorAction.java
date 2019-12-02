@@ -1,4 +1,4 @@
-package frc.robot;
+package frc.robot.Actions;
 
 import frc.lib.statemachine.Action;
 import frc.robot.subsystems.Manipulator;

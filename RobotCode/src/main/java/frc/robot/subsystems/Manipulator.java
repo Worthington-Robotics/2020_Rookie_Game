@@ -47,7 +47,7 @@ public class Manipulator extends Subsystem {
 
     }
 
-    public static class PeriodicIO {
-        public double motor_demand = 0;
+    private static class PeriodicIO {
+        double motor_demand = 0;
     }
 }
