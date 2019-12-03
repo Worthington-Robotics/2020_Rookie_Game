@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Door extends Subsystem{
 
@@ -19,16 +20,25 @@ public class Door extends Subsystem{
     public void reset() {
 
     }
-
+public static Door getInstance(){
+        return manip
+}
     private DoubleSolenoid door;
-
+private PeriodicIO pistonStuff;
     public Door() {
         door = new DoubleSolenoid(1, 2);
+        pistonStuff = new PeriodicIO();
     }
     public void writePeriodicOutputs() {
-        door.set();
+        door.set(pistonStuff.demand);
     }
-    private static class PeriodicIO {
+
+    public void pistonPosition(DoubleSolenoid.Value x) {
+        pistonStuff.demand = x;
+    }
+
+    private class PeriodicIO {
         public DoubleSolenoid.Value demand = DoubleSolenoid.Value.kOff;
     }
+
 }
