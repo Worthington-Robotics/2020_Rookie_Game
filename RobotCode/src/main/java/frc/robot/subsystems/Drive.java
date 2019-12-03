@@ -1,5 +1,15 @@
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.lib.loops.ILooper;
+import frc.lib.loops.Loop;
+import frc.lib.util.DriveSignal;
+import frc.lib.util.HIDHelper;
+import frc.robot.Constants;
+
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -83,54 +93,7 @@ private final Loop mloop = new Loop(){
     public void registerEnabledLoops(ILooper enabledLooper) {
         enabledLooper.register(mloop);
     }
-    public static Drive getInstance() {
-        return mDrive;
-    }
 
-    @Override
-    public void outputTelemetry() {
-
-    }
-
-    @Override
-    public void reset() {
-
-    }
-
-    private DriveSignal arcadeDrive(double x, double y) {
-        double left = 0;
-        double right = 0;
-
-        double maxInput = Math.copySign(Math.max(Math.abs(x), Math.abs(y)), x);
-
-        if(x >= 0 && y >= 0) {
-            left = maxInput;
-            right = x - y;
-        }
-        if(x < 0 && y >= 0) {
-            left = x + y;
-            right = maxInput;
-        }
-        if(x < 0 && y < 0) {
-            left = x + y;
-            right = maxInput;
-        }
-        if(x >= 0 && y > 0) {
-            left = maxInput;
-            right = x - y;
-        }
-        return new DriveSignal(left, right);
-    }
-
-    enum DriveControlState {
-        OPEN_LOOP,
-        PATH_FOLLOWING,
-        PROFILING_TEST,
-        GYRO_LOCK,
-        ANGLE_PID;
-
-        @Override
-        public String toString() {
             return super.toString();
         }
     }
@@ -141,3 +104,4 @@ private final Loop mloop = new Loop(){
         public double right_demand = 0;
     }
 }
+

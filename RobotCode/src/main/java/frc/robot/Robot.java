@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.Drive;
 
 import java.util.Arrays;
-import java.util.logging.Logger;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -32,6 +31,7 @@ public class Robot extends TimedRobot {
           //PoseEstimator.getInstance(),
           //Logger.getInstance()
   ));
+
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -94,6 +94,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+
   }
 
   /**
