@@ -19,13 +19,13 @@ public class Constants {
     //public static final int ARM_PRONOMINAL = 7;
     public static final int ARM_DISTAL = 8;
 
-    //*Spark Ports
-    /*public static final int BOTTOM_CARGOMANIP_ID = 1;
-    *public static final int TOP_CARGOMANIP_ID = 2;
-    *public static final int CLIMBER_CRAWL_ID = 3;
-    *public static final int CLIMBER_ELEVATOR_ID = 4;
-    */
-    public static final int MANIPULATOR_ID_1 = 1;
+    //Spark Ports
+   /* public static final int BOTTOM_CARGOMANIP_ID = 1;
+    public static final int TOP_CARGOMANIP_ID = 2;
+    public static final int CLIMBER_CRAWL_ID = 3;
+    public static final int CLIMBER_ELEVATOR_ID = 4;8*/
+    public static final int MOTOR_ID = 1;
+
     //Solenoid Ports
     public static final int TRANS_LOW_ID = 0;
     public static final int TRANS_HIGH_ID = 1;

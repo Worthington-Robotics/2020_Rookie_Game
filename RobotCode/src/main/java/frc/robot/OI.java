@@ -5,9 +5,10 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.lib.statemachine.Action;
 
 
-public class OI {
+public class 0..0.OI {
 
-    public OI() {
-       
-    }
-}
+
+
+0    public OI() {
+ .0
+  0 .....0.class 0
