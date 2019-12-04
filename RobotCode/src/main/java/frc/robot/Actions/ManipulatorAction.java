@@ -11,7 +11,7 @@ public class ManipulatorAction extends Action {
      */
     @Override
     public void onStart() {
-        Manipulator.getInstance().something(-1);
+        Manipulator.getInstance().setDemand(-1);
     }
 
     /**
@@ -38,6 +38,6 @@ public class ManipulatorAction extends Action {
      */
     @Override
     public void onStop() {
-        Manipulator.getInstance().something(0);
+        Manipulator.getInstance().setDemand(0);
     }
 }
