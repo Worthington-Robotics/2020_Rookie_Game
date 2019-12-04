@@ -20,12 +20,14 @@ public class Manipulator extends Subsystem {
     }
 
 
-    public void something(double w){
+    public void setdemand(double w) {
         periodicIO.motor_demand = w;
     }
+
     public static Manipulator getInstance() {
         return new Manipulator();
     }
+
     /**
      * Outputs all logging information to the SmartDashboard
      */

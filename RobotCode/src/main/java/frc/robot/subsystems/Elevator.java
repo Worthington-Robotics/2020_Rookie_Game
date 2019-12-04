@@ -5,12 +5,12 @@ import frc.lib.loops.ILooper;
 import frc.robot.Constants;
 
 public class Elevator extends Subsystem {
-
+    private static Elevator mElevator = new Elevator();
     private PeriodicIO periodicIO;
     private Spark elevator1;
 
     public Elevator() {
-        elevator1 = new Spark(Constants.MOTOR_ID);
+        elevator1 = new Spark(Constants.ELEVATOR_ID);
         periodicIO = new PeriodicIO();
     }
 
@@ -20,12 +20,12 @@ public class Elevator extends Subsystem {
     }
 
 
-    public void something(double w) {
+    public void setdemand(double w) {
         periodicIO.elevator_demand = w;
     }
 
-    public static Manipulator getInstance() {
-        return new Manipulator();
+    public static Elevator getInstance() {
+        return mElevator;
     }
 
     /**

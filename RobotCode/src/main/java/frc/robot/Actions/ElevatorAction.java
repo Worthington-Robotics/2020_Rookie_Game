@@ -1,17 +1,23 @@
 package frc.robot.Actions;
 
 import frc.lib.statemachine.Action;
-import frc.robot.subsystems.Manipulator;
+import frc.robot.subsystems.Elevator;
 
-public class ManipulatorAction extends Action {
+public class ElevatorAction extends Action {
+    private boolean mup;
 
+    public ElevatorAction(boolean up) {
+        mup = up;
+    }
 
     /**
      * code to run on action start
      */
     @Override
     public void onStart() {
-        Manipulator.getInstance().setdemand(-1);
+        if (mup) {
+            
+        }
     }
 
     /**
@@ -38,6 +44,6 @@ public class ManipulatorAction extends Action {
      */
     @Override
     public void onStop() {
-        Manipulator.getInstance().setdemand(0);
+        Elevator.getInstance().setdemand(0);
     }
 }
