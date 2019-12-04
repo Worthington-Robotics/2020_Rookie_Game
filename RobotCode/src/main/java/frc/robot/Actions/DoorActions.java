@@ -23,6 +23,6 @@ public class DoorActions extends Action {
 
     @Override
     public void onStop() {
-        Door.getInstance().something(DoubleSolenoid.Value.kOff);
+        Door.getInstance().something(DoubleSolenoid.Value.kReverse);
     }
 }
