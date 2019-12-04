@@ -20,9 +20,9 @@ public class Door extends Subsystem{
     public void reset() {
 
     }
-public static Door getInstance(){
-        return manip
-}
+
+    public static Door getInstance() {return new Door}
+
     private DoubleSolenoid door;
 private PeriodicIO pistonStuff;
     public Door() {

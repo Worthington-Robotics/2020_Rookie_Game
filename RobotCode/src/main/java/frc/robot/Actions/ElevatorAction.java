@@ -1,18 +1,15 @@
 package frc.robot.Actions;
 
 import frc.lib.statemachine.Action;
-import frc.robot.subsystems.Manipulator;
 
-public class ManipulatorAction extends Action {
-
-
+public class ElevatorAction extends Action {
     /**
      * code to run on action start
      */
     @Override
     public void onStart() {
-        Manipulator.getInstance().set_demand(-1);
     }
+private boolean up;
 
     /**
      * code to run while action loops
@@ -22,7 +19,10 @@ public class ManipulatorAction extends Action {
     public void onLoop() {
 
     }
-
+public ElevatorAction(boolean up){
+    this.up = up;
+    
+}
     /**
      * method that tells the state machine the action is finished earlier than the scheduler
      *
@@ -30,7 +30,7 @@ public class ManipulatorAction extends Action {
      */
     @Override
     public boolean isFinished() {
-        return true;
+        return false;
     }
 
     /**
@@ -38,6 +38,6 @@ public class ManipulatorAction extends Action {
      */
     @Override
     public void onStop() {
-        Manipulator.getInstance().set_demand(0);
+
     }
 }
