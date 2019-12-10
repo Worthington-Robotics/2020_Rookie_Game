@@ -21,7 +21,7 @@ private boolean up;
     }
 public ElevatorAction(boolean up){
     this.up = up;
-    
+
 }
     /**
      * method that tells the state machine the action is finished earlier than the scheduler

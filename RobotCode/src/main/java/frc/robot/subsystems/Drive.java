@@ -90,6 +90,23 @@ private final Loop mloop = new Loop(){
         c.set(ControlMode.Follower, y. getDeviceID());
         d.set(ControlMode.Follower, y.getDeviceID());
     }
+
+    /**
+     * Outputs all logging information to the SmartDashboard
+     */
+    @Override
+    public void outputTelemetry() {
+
+    }
+
+    /**
+     * Called to reset and configure the subsystem
+     */
+    @Override
+    public void reset() {
+
+    }
+
     public void registerEnabledLoops(ILooper enabledLooper) {
         enabledLooper.register(mloop);
     }
@@ -99,7 +116,7 @@ private final Loop mloop = new Loop(){
     }
 
 
-    public static class PeriodicIO {
+    class PeriodicIO {
         public double left_demand = 0;
         public double right_demand = 0;
     }

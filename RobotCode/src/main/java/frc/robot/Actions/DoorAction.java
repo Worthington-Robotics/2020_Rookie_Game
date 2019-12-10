@@ -11,7 +11,6 @@ public class DoorAction extends Action {
     @Override
     public void onStart() {
         Door.getInstance().setDemand(-1);
-        DoubleSolenoid.Value.kForward;
     }
 
     /**
