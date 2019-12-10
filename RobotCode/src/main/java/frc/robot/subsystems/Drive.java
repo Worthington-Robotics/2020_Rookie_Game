@@ -1,6 +1,5 @@
 package frc.robot.subsystems;
 
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
@@ -37,52 +36,55 @@ public class Drive extends Subsystem {
     private VictorSPX a, b, c, d;
     private static Drive mDrive = new Drive();
     private DriveControlState mDriveControlState;
-private PeriodicIO periodic = new PeriodicIO();
-private double[] operatorInput = {0, 0, 0};
-private final Loop mloop = new Loop(){
+    private PeriodicIO periodic = new PeriodicIO();
+    private double[] operatorInput = {0, 0, 0};
+    private final Loop mloop = new Loop() {
 
-    /**
-     * what the loop runs when started by the subsystem manager
-     *
-     * @param timestamp handled by subsystem manager
-     */
-    public void onStart(double timestamp) {
-        synchronized (Drive.this) {
+        /**
+         * what the loop runs when started by the subsystem manager
+         *
+         * @param timestamp handled by subsystem manager
+         */
+        public void onStart(double timestamp) {
+            synchronized (Drive.this) {
+            }
+
         }
 
-    }
+        /**
+         * what the loop runs while run by the subsystem manager
+         *
+         * @param timestamp handled by subsystem manager
+         */
+        public void onLoop(double timestamp) {
+            operatorInput = HIDHelper.getAdjStick(Constants.MASTER_STICK);
+            SmartDashboard.putNumberArray("stick", operatorInput);
+            setOpenLoop(arcadeDrive(operatorInput[1], operatorInput[2]));
+        }
 
-    /**
-     * what the loop runs while run by the subsystem manager
-     *
-     * @param timestamp handled by subsystem manager
-     */
-    public void onLoop(double timestamp) {
-        operatorInput = HIDHelper.getAdjStick(Constants.MASTER_STICK);
-        SmartDashboard.putNumberArray("stick", operatorInput);
-        setOpenLoop(arcadeDrive(operatorInput[1], operatorInput[2]));
-    }
+        /**
+         * what the loop runs when ended by the subsystem manager
+         *
+         * @param timestamp handled by subsystem manager
+         */
+        public void onStop(double timestamp) {
 
-    /**
-     * what the loop runs when ended by the subsystem manager
-     *
-     * @param timestamp handled by subsystem manager
-     */
-    public void onStop(double timestamp) {
+        }
+    };
 
-    }
-};
     public synchronized void writePeriodicOutputs() {
         x.set(ControlMode.PercentOutput, periodic.left_demand);
         y.set(ControlMode.PercentOutput, periodic.right_demand);
         a.set(ControlMode.Follower, x.getDeviceID());
         b.set(ControlMode.Follower, x.getDeviceID());
-        c.set(ControlMode.Follower, y. getDeviceID());
+        c.set(ControlMode.Follower, y.getDeviceID());
         d.set(ControlMode.Follower, y.getDeviceID());
     }
+
     public void registerEnabledLoops(ILooper enabledLooper) {
         enabledLooper.register(mloop);
     }
+
     public static Drive getInstance() {
         return mDrive;
     }
@@ -103,19 +105,19 @@ private final Loop mloop = new Loop(){
 
         double maxInput = Math.copySign(Math.max(Math.abs(x), Math.abs(y)), x);
 
-        if(x >= 0 && y >= 0) {
+        if (x >= 0 && y >= 0) {
             left = maxInput;
             right = x - y;
         }
-        if(x < 0 && y >= 0) {
+        if (x < 0 && y >= 0) {
             left = x + y;
             right = maxInput;
         }
-        if(x < 0 && y < 0) {
+        if (x < 0 && y < 0) {
             left = x + y;
             right = maxInput;
         }
-        if(x >= 0 && y > 0) {
+        if (x >= 0 && y > 0) {
             left = maxInput;
             right = x - y;
         }
