@@ -10,12 +10,12 @@ public class Constants {
      */
 
     //Talon IDs
-    public static final int DRIVE_FRONT_LEFT_ID = 4;
-    public static final int DRIVE_MIDDLE_LEFT_ID = 5;
-    public static final int DRIVE_BACK_LEFT_ID = 6;
-    public static final int DRIVE_FRONT_RIGHT_ID = 1;
-    public static final int DRIVE_MIDDLE_RIGHT_ID = 2;
-    public static final int DRIVE_BACK_RIGHT_ID = 3;
+    public static final int DRIVE_FRONT_LEFT_ID = 1;
+    public static final int DRIVE_MIDDLE_LEFT_ID = 2;
+    public static final int DRIVE_BACK_LEFT_ID = 3;
+    public static final int DRIVE_FRONT_RIGHT_ID = 4;
+    public static final int DRIVE_MIDDLE_RIGHT_ID = 5;
+    public static final int DRIVE_BACK_RIGHT_ID = 6;
     //public static final int ARM_PRONOMINAL = 7;
     public static final int ARM_DISTAL = 8;
 

@@ -24,27 +24,27 @@ import frc.robot.Constants;
 
 public class Drive extends Subsystem {
     public Drive() {
-        x = new TalonSRX(1);
-        y = new TalonSRX(2);
-        a = new VictorSPX(3);
-        b = new VictorSPX(4);
-        c = new VictorSPX(5);
-        d = new VictorSPX(6);
+        frontRight = new TalonSRX(Constants.DRIVE_FRONT_RIGHT_ID);
+        frontLeft = new TalonSRX(Constants.DRIVE_FRONT_LEFT_ID);
+        middleRight = new VictorSPX(Constants.DRIVE_MIDDLE_RIGHT_ID);
+        middleLeft = new TalonSRX(Constants.DRIVE_MIDDLE_LEFT_ID);
+        backRight = new TalonSRX(Constants.DRIVE_BACK_RIGHT_ID);
+        backLeft = new TalonSRX(Constants.DRIVE_BACK_LEFT_ID);
     }
 
     public synchronized void setOpenLoop(DriveSignal signal) {
         if (mDriveControlState != DriveControlState.OPEN_LOOP) {
             System.out.println("Switching to open loop");
-            x.set(ControlMode.PercentOutput, 0);
-            y.set(ControlMode.PercentOutput, 0);
+            frontRight.set(ControlMode.PercentOutput, 0);
+            frontLeft.set(ControlMode.PercentOutput, 0);
             mDriveControlState = DriveControlState.OPEN_LOOP;
         }
         periodic.left_demand = signal.getLeft();
         periodic.right_demand = signal.getRight();
     }
 
-    private TalonSRX x, y;
-    private VictorSPX a, b, c, d;
+    private TalonSRX frontRight, middleLeft, backRight, frontLeft, backLeft;
+    private VictorSPX middleRight;
     private static Drive mDrive = new Drive();
     private DriveControlState mDriveControlState;
 private PeriodicIO periodic = new PeriodicIO();
@@ -83,17 +83,73 @@ private final Loop mloop = new Loop(){
     }
 };
     public synchronized void writePeriodicOutputs() {
-        x.set(ControlMode.PercentOutput, periodic.left_demand);
-        y.set(ControlMode.PercentOutput, periodic.right_demand);
-        a.set(ControlMode.Follower, x.getDeviceID());
-        b.set(ControlMode.Follower, x.getDeviceID());
-        c.set(ControlMode.Follower, y. getDeviceID());
-        d.set(ControlMode.Follower, y.getDeviceID());
+        frontRight.set(ControlMode.PercentOutput, periodic.left_demand);
+        frontLeft.set(ControlMode.PercentOutput, periodic.right_demand);
+        middleRight.set(ControlMode.Follower, frontRight.getDeviceID());
+        middleLeft.set(ControlMode.Follower, frontRight.getDeviceID());
+        backRight.set(ControlMode.Follower, frontLeft. getDeviceID());
+        backLeft.set(ControlMode.Follower, frontLeft.getDeviceID());
     }
     public void registerEnabledLoops(ILooper enabledLooper) {
         enabledLooper.register(mloop);
     }
+<<<<<<< Updated upstream
 
+=======
+    public static Drive getInstance() {
+        return mDrive;
+    }
+
+    @Override
+    public void outputTelemetry() {
+        SmartDashboard.putNumberArray("Axis", operatorInput);
+    }
+
+    @Override
+    public void reset() {
+
+    }
+    public void readPeriodicInputs() {
+        operatorInput[1] = Constants.MASTER.getRawAxis(1);
+        operatorInput[2] = Constants.MASTER.getRawAxis(2);
+    }
+
+
+    private DriveSignal arcadeDrive(double frontRight, double frontLeft) {
+        double left = 0;
+        double right = 0;
+
+        double maxInput = Math.copySign(Math.max(Math.abs(frontRight), Math.abs(frontLeft)), frontRight);
+
+        if(frontRight >= 0 && frontLeft >= 0) {
+            left = maxInput;
+            right = frontRight - frontLeft;
+        }
+        if(frontRight < 0 && frontLeft >= 0) {
+            left = frontRight + frontLeft;
+            right = maxInput;
+        }
+        if(frontRight < 0 && frontLeft < 0) {
+            left = frontRight + frontLeft;
+            right = maxInput;
+        }
+        if(frontRight >= 0 && frontLeft > 0) {
+            left = maxInput;
+            right = frontRight - frontLeft;
+        }
+        return new DriveSignal(left, right);
+    }
+
+    enum DriveControlState {
+        OPEN_LOOP,
+        PATH_FOLLOWING,
+        PROFILING_TEST,
+        GYRO_LOCK,
+        ANGLE_PID;
+
+        @Override
+        public String toString() {
+>>>>>>> Stashed changes
             return super.toString();
         }
     }
