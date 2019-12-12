@@ -24,7 +24,9 @@ public class Constants {
     public static final int TOP_CARGOMANIP_ID = 2;
     public static final int CLIMBER_CRAWL_ID = 3;
     public static final int CLIMBER_ELEVATOR_ID = 4;8*/
-    public static final int MOTOR_ID = 1;
+    public static final int MANIPULATOR = 1;
+    public static final int ELEVATOR = 2;
+
 
     //Solenoid Ports
     public static final int TRANS_LOW_ID = 0;

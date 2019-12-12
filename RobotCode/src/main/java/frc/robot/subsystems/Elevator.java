@@ -4,16 +4,16 @@ import edu.wpi.first.wpilibj.Spark;
 import frc.lib.loops.ILooper;
 import frc.robot.Constants;
 
-public class Manipulator extends Subsystem {
+public class Elevator extends Subsystem {
 
     private PeriodicIO periodicIO;
     private Spark motor;
 
-    private Manipulator() {
-        motor = new Spark(Constants.MANIPULATOR);
+    private Elevator() {
+        motor = new Spark(Constants.ELEVATOR);
         periodicIO = new PeriodicIO();
     }
-    private static Manipulator mManip = new Manipulator();
+    private static Elevator mElevator = new Elevator();
     @Override
     public void writePeriodicOutputs() {
         motor.set(periodicIO.motor_demand);
@@ -21,11 +21,11 @@ public class Manipulator extends Subsystem {
 
     public void reset(){}
 
-    public void setManip(double demand){
+    public void setElevator(double demand){
         periodicIO.motor_demand = demand;
     }
-    public static Manipulator getInstance() {
-        return mManip;
+    public static Elevator getInstance() {
+        return mElevator;
     }
     /**
      * Outputs all logging information to the SmartDashboard

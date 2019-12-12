@@ -3,7 +3,13 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 public class Door extends Subsystem{
-
+    
+    private DoubleSolenoid door;
+    private PeriodicIO periodicIO;
+    public Door() {
+        door = new DoubleSolenoid(1, 2);
+        periodicIO = new PeriodicIO();
+    }
     /**
      * Outputs all logging information to the SmartDashboard
      */
@@ -11,7 +17,10 @@ public class Door extends Subsystem{
     public void outputTelemetry() {
 
     }
-    public static Door getInstance(){return null;}
+    private static Door mDoor = new Door();
+    public static Door getInstance(){
+        return mDoor;
+    }
 
     /**
      * Called to reset and configure the subsystem
@@ -21,13 +30,14 @@ public class Door extends Subsystem{
 
     }
 
-    private DoubleSolenoid door;
+    
 
-    public Door() {
-        door = new DoubleSolenoid(1, 2);
+    public void setDoor(DoubleSolenoid.Value val){
+
     }
+
     public void writePeriodicOutputs() {
-        //door.set();
+        door.set(periodicIO.demand);
     }
     private static class PeriodicIO {
         public DoubleSolenoid.Value demand = DoubleSolenoid.Value.kOff;

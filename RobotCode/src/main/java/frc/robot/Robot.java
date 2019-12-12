@@ -33,10 +33,11 @@ public class Robot extends TimedRobot {
      * for any initialization code.
      */
     private SubsystemManager Manager = new SubsystemManager(Arrays.asList(
-            Drive.getInstance()
+            Drive.getInstance(),
             //PoseEstimator.getInstance(),
-            //Manipulator.getInstance()
-            //Arm.getInstance(),
+            Manipulator.getInstance(),
+            Door.getInstance(),
+            Elevator.getInstance()
             //Vision.getInstance(),
             //Logger.getInstance()
     ));
@@ -49,7 +50,7 @@ public class Robot extends TimedRobot {
         //Logger.getInstance().addNumberKeys(Constants.NUMBER_KEYS);
         Manager.registerEnabledLoops(EnabledLoops);
         Manager.registerDisabledLoops(DisabledLoops);
-        //Arm.getInstance().reset();
+    
         //Drive.getInstance().reset();
         //PoseEstimator.getInstance().reset();
 
@@ -80,9 +81,6 @@ public class Robot extends TimedRobot {
         //Reset all important subsystems
         //PoseEstimator.getInstance().reset();
         Drive.getInstance().reset();
-        //Arm.getInstance().reset();
-        //Arm.getInstance().setIgnoreSafety(true);
-
         //Start the enabled looper
         EnabledLoops.start();
 
@@ -110,11 +108,8 @@ public class Robot extends TimedRobot {
         //May want to remove these given that the robot was likely already running. may cause issues on field mode switch
         //PoseEstimator.getInstance().reset();
         //Drive.getInstance().reset();
-        //Arm.getInstance().reset();
-
         //Start the enabled looper
         EnabledLoops.start();
-
         //for saftey reasons switch drivetrain into open loop forcibly
         Drive.getInstance().setOpenLoop(DriveSignal.NEUTRAL);
     }
@@ -128,12 +123,9 @@ public class Robot extends TimedRobot {
     public void testInit() {
         //Stop the disabled looper
         DisabledLoops.stop();
-
         //May want to remove these given that the robot was likely already running. may cause issues on field mode switch
         //PoseEstimator.getInstance().reset();
         Drive.getInstance().reset();
-        //Arm.getInstance().reset();
-
         //Start the enabled looper
         EnabledLoops.start();
 

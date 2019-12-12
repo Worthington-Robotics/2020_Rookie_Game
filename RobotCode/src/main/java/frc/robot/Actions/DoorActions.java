@@ -8,7 +8,7 @@ public class DoorActions extends Action {
 
     @Override
     public void onStart() {
-        //Door.getInstance().something(DoubleSolenoid.Value.kForward);
+        Door.getInstance().setDoor(DoubleSolenoid.Value.kForward);
     }
 
     @Override
@@ -18,11 +18,11 @@ public class DoorActions extends Action {
 
     @Override
     public boolean isFinished() {
-        return false;
+        return true;
     }
 
     @Override
     public void onStop() {
-        //Door.getInstance().something(DoubleSolenoid.Value.kReverse);
+        Door.getInstance().setDoor(DoubleSolenoid.Value.kReverse);
     }
 }
