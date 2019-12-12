@@ -11,6 +11,7 @@ public class Door extends Subsystem{
     public void outputTelemetry() {
 
     }
+    public static Door getInstance(){return null;}
 
     /**
      * Called to reset and configure the subsystem
@@ -26,7 +27,7 @@ public class Door extends Subsystem{
         door = new DoubleSolenoid(1, 2);
     }
     public void writePeriodicOutputs() {
-        door.set();
+        //door.set();
     }
     private static class PeriodicIO {
         public DoubleSolenoid.Value demand = DoubleSolenoid.Value.kOff;

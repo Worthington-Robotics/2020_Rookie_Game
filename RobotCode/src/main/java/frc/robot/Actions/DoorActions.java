@@ -8,7 +8,7 @@ public class DoorActions extends Action {
 
     @Override
     public void onStart() {
-        Door.getInstance().something(DoubleSolenoid.Value.kForward);
+        //Door.getInstance().something(DoubleSolenoid.Value.kForward);
     }
 
     @Override
@@ -23,6 +23,6 @@ public class DoorActions extends Action {
 
     @Override
     public void onStop() {
-        Door.getInstance().something(DoubleSolenoid.Value.kReverse);
+        //Door.getInstance().something(DoubleSolenoid.Value.kReverse);
     }
 }
