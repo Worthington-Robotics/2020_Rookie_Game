@@ -4,13 +4,23 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Door extends Subsystem{
-
+    
+    private DoubleSolenoid door;
+    private PeriodicIO periodicIO;
+    public Door() {
+        door = new DoubleSolenoid(1, 2);
+        periodicIO = new PeriodicIO();
+    }
     /**
      * Outputs all logging information to the SmartDashboard
      */
     @Override
     public void outputTelemetry() {
 
+    }
+    private static Door mDoor = new Door();
+    public static Door getInstance(){
+        return mDoor;
     }
 
     /**
@@ -20,21 +30,14 @@ public class Door extends Subsystem{
     public void reset() {
 
     }
+    
 
-    public static Door getInstance() {return new Door}
+    public void setDoor(DoubleSolenoid.Value val){
 
-    private DoubleSolenoid door;
-private PeriodicIO pistonStuff;
-    public Door() {
-        door = new DoubleSolenoid(1, 2);
-        pistonStuff = new PeriodicIO();
     }
+
     public void writePeriodicOutputs() {
-        door.set(pistonStuff.demand);
-    }
-
-    public void pistonPosition(DoubleSolenoid.Value x) {
-        pistonStuff.demand = x;
+        door.set(periodicIO.demand);
     }
 
     private class PeriodicIO {

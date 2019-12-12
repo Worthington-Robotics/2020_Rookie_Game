@@ -1,4 +1,4 @@
-package frc.robot.Actions;
+package frc.robot.actions;
 
 import frc.lib.statemachine.Action;
 import frc.robot.subsystems.Manipulator;
@@ -11,7 +11,7 @@ public class ManipulatorAction extends Action {
      */
     @Override
     public void onStart() {
-        Manipulator.getInstance().set_demand(-1);
+        Manipulator.getInstance().setManip(-1);
     }
 
     /**
@@ -38,6 +38,6 @@ public class ManipulatorAction extends Action {
      */
     @Override
     public void onStop() {
-        Manipulator.getInstance().set_demand(0);
+        Manipulator.getInstance().setManip(0);
     }
 }

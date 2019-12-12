@@ -1,1 +1,7 @@
-VERSION_ID =5;
+<<<<<<< Updated upstream
+VERSION_ID =19;
+=======
+VERSION_ID=13;
+BUILD_AUTHOR=borin;
+BUILD_DATE=20191212-08:44:19;
+>>>>>>> Stashed changes

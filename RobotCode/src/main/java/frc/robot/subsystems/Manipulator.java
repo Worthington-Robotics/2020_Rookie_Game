@@ -9,22 +9,22 @@ public class Manipulator extends Subsystem {
     private PeriodicIO periodicIO;
     private Spark motor;
 
-    public Manipulator() {
-        motor = new Spark(Constants.MOTOR_ID);
+    private Manipulator() {
+        motor = new Spark(Constants.MANIPULATOR);
         periodicIO = new PeriodicIO();
     }
-
+    private static Manipulator mManip = new Manipulator();
     @Override
     public void writePeriodicOutputs() {
         motor.set(periodicIO.motor_demand);
     }
 
-
-    public void set_demand(double w){
-        periodicIO.motor_demand = w;
+    public void reset(){}
+    public void setManip(double demand){
+        periodicIO.motor_demand = demand;
     }
     public static Manipulator getInstance() {
-        return new Manipulator();
+        return mManip;
     }
     /**
      * Outputs all logging information to the SmartDashboard
@@ -36,51 +36,10 @@ public class Manipulator extends Subsystem {
 
     @Override
     public void outputTelemetry() {
-
-    }
-
-    private Spark manipulator;
-    private PeriodicIO periodic1;
-
-    public Manipulator() {
-        manipulator = new Spark(Constants.MANIPULATOR_ID_1);
-        periodic1 = new PeriodicIO();
-    }
-
-    /**
-     * Outputs all logging information to the SmartDashboard
-     */
-    @Override
-    public void outputTelemetry() {
-
-    }
-
-
-    public void writePeriodicOutputs() {
-        manipulator.set(periodic1.manipulator_demand);
-    }
-
-    public void setDemand(double demand1) {
-        periodic1.manipulator_demand = demand1;
-    }
-    public static Manipulator getInstance(){
-        return new Manipulator();
-    }
-    /**
-     * Called to reset and configure the subsystem
-     */
-    @Override
-    public void reset() {
-
-    }
-
-    private static class PeriodicIO {
-        double motor_demand = 0;
-    public void registerEnabledLoops(ILooper enabledLooper) {
 
     }
 
     public static class PeriodicIO {
-        public double manipulator_demand = 0;
+        public double motor_demand = 0;
     }
 }
