@@ -17,10 +17,13 @@ import java.util.List;
 public class DriveTrajectoryGenerator {
     private static final DriveTrajectoryGenerator m_instance = new DriveTrajectoryGenerator();
     private final DriveMotionPlanner DMP;
+    private final Pose2d Rocket, Midpoint, Start;
     
     private DriveTrajectoryGenerator() {
         DMP          /**/ = new DriveMotionPlanner();
-        
+        Start     /**/ = new Pose2d(0, 0, Rotation2d.fromDegrees(0));
+        Midpoint     /**/ = new Pose2d(123, 0, Rotation2d.fromDegrees(315));
+        Rocket     /**/ = new Pose2d(296, -132, Rotation2d.fromDegrees(0));
     }
 
     public static DriveTrajectoryGenerator getInstance() {
@@ -48,6 +51,14 @@ public class DriveTrajectoryGenerator {
         List<Pose2d> Points = new ArrayList<>();
         Points.add(new Pose2d(0, 0, Rotation2d.identity()));
         Points.add(new Pose2d(10, 0, Rotation2d.fromDegrees(0)));
+        return generateTrajectory(false, Points, Arrays.asList(new CentripetalAccelerationConstraint(60)), 36.0, 60, 10.0);
+    }
+
+    public Trajectory<TimedState<Pose2dWithCurvature>> routeKesselRun() {
+        List<Pose2d> Points = new ArrayList<>();
+        Points.add(Start);
+        Points.add(Midpoint);
+        Points.add(Rocket);
         return generateTrajectory(false, Points, Arrays.asList(new CentripetalAccelerationConstraint(60)), 36.0, 60, 10.0);
     }
 

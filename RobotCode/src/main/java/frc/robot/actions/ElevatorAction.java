@@ -38,7 +38,7 @@ public class ElevatorAction extends Action {
      */
     @Override
     public boolean isFinished() {
-        return true;
+        return false;
     }
 
     /**
