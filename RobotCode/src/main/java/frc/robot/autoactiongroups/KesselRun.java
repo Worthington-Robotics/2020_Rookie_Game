@@ -8,7 +8,7 @@ import frc.robot.planners.DriveTrajectoryGenerator;
 
 public class KesselRun extends StateMachineDescriptor {
     public KesselRun () {
-        addSequential(new DriveTra(DriveTrajectoryGenerator.getInstance().getTenInch(), false), 30);
+        addSequential(new DriveTra(DriveTrajectoryGenerator.getInstance().routeKesselRun(), false), 30);
         addSequential(new ElevatorAction(false), 1000);
         addSequential(new DoorActions(), 22000);
     }
