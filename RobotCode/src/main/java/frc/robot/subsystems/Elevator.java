@@ -9,11 +9,12 @@ public class Elevator extends Subsystem {
     private PeriodicIO periodicIO;
     private Spark motor;
 
+    private static Elevator mElevator = new Elevator();
+
     private Elevator() {
         motor = new Spark(Constants.ELEVATOR);
         periodicIO = new PeriodicIO();
     }
-    private static Elevator mElevator = new Elevator();
     @Override
     public void writePeriodicOutputs() {
         motor.set(periodicIO.motor_demand);

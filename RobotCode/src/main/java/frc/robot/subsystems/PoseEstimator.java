@@ -1,4 +1,4 @@
-/**package frc.robot.subsystems;
+package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -24,7 +24,7 @@ public class PoseEstimator extends Subsystem {
     private double left_encoder_prev_distance_ = 0.0;
     private double right_encoder_prev_distance_ = 0.0;
     private double distance_driven_ = 0.0;
-    //private PeriodicIO periodic;
+    private PeriodicIO periodic;
 
     private Loop mLoop = new Loop() {
 
@@ -110,7 +110,7 @@ public class PoseEstimator extends Subsystem {
         reset(Timer.getFPGATimestamp(), Pose2d.identity());
     }
 
-    /*public double getPoseX(){
+    public double getPoseX(){
         return periodic.odometry.getTranslation().x();
     }
     public double getPoseY()
@@ -121,15 +121,13 @@ public class PoseEstimator extends Subsystem {
     {
         return periodic.odometry.getRotation().getDegrees();
     }
-*//**
+
     @Override
     public void registerEnabledLoops(ILooper looper) {
         looper.register(mLoop);
     }
-  /*
     public static class PeriodicIO
     {
         Pose2d odometry;
-    }*//**
+    }
 }
-*/
