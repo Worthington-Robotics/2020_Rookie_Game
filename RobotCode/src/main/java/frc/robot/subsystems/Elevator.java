@@ -17,13 +17,15 @@ public class Elevator extends Subsystem {
     }
     @Override
     public void writePeriodicOutputs() {
-        motor.set(periodicIO.motor_demand);
+        motor.set(periodicIO.motorDemand);
     }
 
-    public void reset(){}
+    public void reset(){
+        periodicIO.motorDemand = 0;
+    }
 
     public void setElevator(double demand){
-        periodicIO.motor_demand = demand;
+        periodicIO.motorDemand = demand;
     }
     public static Elevator getInstance() {
         return mElevator;
@@ -41,7 +43,7 @@ public class Elevator extends Subsystem {
 
     }
 
-    public static class PeriodicIO {
-        public double motor_demand = 0;
+    private static class PeriodicIO {
+        public double motorDemand = 0;
     }
 }

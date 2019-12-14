@@ -14,8 +14,7 @@ public abstract class Subsystem {
      * Writes the periodic outputs to actuators (motors and ect...)
      */
     // Optional design pattern for caching periodic writes to avoid hammering the HAL/CAN.
-    public void writePeriodicOutputs() {
-    }
+    public abstract void writePeriodicOutputs();
 
     /**
      * Outputs all logging information to the SmartDashboard
