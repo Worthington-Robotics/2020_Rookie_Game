@@ -17,10 +17,12 @@ import java.util.List;
 public class DriveTrajectoryGenerator {
     private static final DriveTrajectoryGenerator m_instance = new DriveTrajectoryGenerator();
     private final DriveMotionPlanner DMP;
-    
+    private final Pose2d PoseBeginning, PoseMiddle, PoseFinal;
     private DriveTrajectoryGenerator() {
         DMP          /**/ = new DriveMotionPlanner();
-        
+        PoseBeginning = new Pose2d (0, 0, Rotation2d.fromDegrees(0));
+        PoseMiddle = new Pose2d (0, 0, Rotation2d.fromDegrees(315));
+        PoseFinal = new Pose2d (0, 0, Rotation2d.fromDegrees(0));
     }
 
     public static DriveTrajectoryGenerator getInstance() {
@@ -50,6 +52,12 @@ public class DriveTrajectoryGenerator {
         Points.add(new Pose2d(10, 0, Rotation2d.fromDegrees(0)));
         return generateTrajectory(false, Points, Arrays.asList(new CentripetalAccelerationConstraint(60)), 36.0, 60, 10.0);
     }
-
+    public Trajectory<TimedState<Pose2dWithCurvature>> StartToRocket() {
+        List<Pose2d> Points = new ArrayList<>();
+        Points.add(PoseBeginning);
+        Points.add(PoseMiddle);
+        Points.add(PoseFinal);
+        return generateTrajectory(false, Points, Arrays.asList(new CentripetalAccelerationConstraint(60)), 36.0, 60, 10.0);
+    }
    
 }
