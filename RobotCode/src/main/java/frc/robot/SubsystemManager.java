@@ -18,7 +18,7 @@ public class SubsystemManager implements ILooper {
     }
 
     public void outputTelemetry() {
-        mAllSubsystems.forEach((s) -> s.outputTelemetry());
+        mAllSubsystems.forEach(Subsystem::outputTelemetry);
     }
 
     private class EnabledLoop implements Loop {

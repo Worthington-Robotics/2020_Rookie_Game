@@ -4,14 +4,13 @@ import frc.lib.statemachine.Action;
 import frc.robot.subsystems.Elevator;
 
 public class ElevatorAction extends Action {
-    
     private boolean down = false;
 
     public ElevatorAction(boolean down) {
         this.down = down;
     }
     /**
-     * code to run on action start
+     * code to run on action starte
      */
     @Override
     public void onStart() {
